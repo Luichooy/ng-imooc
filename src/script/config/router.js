@@ -1,0 +1,19 @@
+app.config(function($stateProvider,$urlRouterProvider){
+    $stateProvider.state('home',{
+        url:'/home',
+        templateUrl:'view/home.html',
+        controller:'homeCtrl'
+    })
+    .state('search',{
+        url:'/search',
+        templateUrl:'view/search.html',
+        controller:'searchCtrl'
+    })
+    .state('my',{
+        url:'/my',
+        templateUrl:'view/my.html',
+        controller:'myCtrl'
+    });
+
+    $urlRouterProvider.otherwise('home');
+});
