@@ -1,4 +1,4 @@
-app.config(function($stateProvider,$urlRouterProvider){
+app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
     $stateProvider.state('home',{
         url:'/home',
         templateUrl:'view/home.html',
@@ -13,7 +13,12 @@ app.config(function($stateProvider,$urlRouterProvider){
         url:'/my',
         templateUrl:'view/my.html',
         controller:'myCtrl'
+    })
+    .state('position',{
+        url:'/position/:id',
+        templateUrl:'view/position.html',
+        controller:'positionCtrl'
     });
 
     $urlRouterProvider.otherwise('home');
-});
+}]);

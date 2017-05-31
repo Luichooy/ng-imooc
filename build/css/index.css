@@ -1,3 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-size: 0.42666667rem;
+  background-color: #eee;
+}
+ul {
+  list-style: none;
+}
 .f-l {
   float: left;
 }
@@ -29,6 +45,7 @@
   width: 100%;
   height: 1.06666667rem;
   border-top: 1px solid #d4d4d4;
+  background-color: #fff;
 }
 .footer ul {
   height: 100%;
@@ -69,17 +86,40 @@
   height: 25px;
   background: url(../image/my.png);
 }
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+.mainList {
+  background-color: #fff;
 }
-body {
-  font-size: 0.42666667rem;
+.mainList ul li {
+  padding: 11px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 0;
 }
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.mainList ul li .left {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 8px;
+  width: 65px;
+  height: 65px;
+}
+.mainList ul li .right {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+}
+.pos-header {
+  position: relative;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  background-color: #12d5b5;
+  color: #fff;
+}
+.pos-header .back-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 45px;
+  font-size: 20px;
+  text-align: center;
 }
