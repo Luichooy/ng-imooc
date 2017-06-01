@@ -2,16 +2,15 @@
     <div class="header-wrapper">
         <h3 class="title">职位分类</h3>
         <div class="nav-wrapper">
-            <button type="button" class="active">技术</button>
-            <button type="button">运营</button>
+            <button type="button" ng-repeat="cls in company.positionClass" ng-click="showPositionList($index)" class="{{isActive===$index?'active':''}}">{{cls.name}}</button>
         </div>
     </div>
     <div class="posList-wrapper">
         <ul>
-            <li class="posList-item">
-                <h3 class="item-name">IOS前端工程师</h3>
-                <p class="item-time">2016-04-16 23:30</p>
-                <span class="salary">15k-25k</span>
+            <li class="posList-item" ng-repeat="position in positionList" ui-sref="position({id:position.id})">
+                <h3 class="item-name">{{position.name}}</h3>
+                <p class="item-time">{{position.createdDate}}</p>
+                <span class="salary">{{position.salary}}</span>
             </li>
         </ul>
     </div>
