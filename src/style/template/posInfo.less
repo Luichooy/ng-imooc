@@ -1,0 +1,50 @@
+.posInfo{
+    position:relative;
+    background:#fff;
+    padding:15px;
+    font-size:0px;
+
+    p{
+        margin-bottom:10px;
+
+        span{
+            margin-right:15px;
+            font-size:14px;
+
+            &.salary{
+                color:red;
+            }
+
+            &:last-child{
+                margin-right:0;
+            }
+        }
+
+        &.desc{
+            font-size:14px;
+        }
+
+        &:last-child{
+            margin-bottom:0;
+        }
+    }
+
+    .pos-collect{
+        position:absolute;
+        right:24px;
+        top:50%;
+        transform: translateY(-50%);
+        width:35px;
+        height:35px;
+    }
+
+    &:after{
+        position:absolute;
+        left:15px;
+        right:0;
+        bottom:0;
+        height:1px;
+        content:'';
+        background:#eee;
+    }
+}

@@ -1,22 +1,9 @@
-app.controller('homeCtrl',['$scope',function($scope){
-     $scope.list = [
-         {
-             id: 1,
-             name: '销售',
-             imgSrc: './image/company-3.png',
-             company: '千度',
-             city: '上海',
-             industry: '互联网',
-             time:'2016-06-01 11:05'
-         },
-         {
-             id: 2,
-             name: 'WEB前端',
-             imgSrc: './image/company-1.png',
-             company: '慕课网',
-             city: '北京',
-             industry: '互联网',
-             time:'2016-06-01 01:05'
-         }
-     ]
+app.controller('homeCtrl',['$scope','$http',function($scope,$http){
+    $http.get('/data/positionList.json')
+        .success(function(res){
+            $scope.list = res;
+        })
+        .error(function(res){
+            console.log(res);
+        });
 }]);

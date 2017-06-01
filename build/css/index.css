@@ -14,6 +14,9 @@ body {
 ul {
   list-style: none;
 }
+button {
+  border: 0;
+}
 .f-l {
   float: left;
 }
@@ -106,6 +109,42 @@ ul {
   vertical-align: top;
   font-size: 14px;
 }
+.pos-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.pos-bottom button {
+  width: 100%;
+  height: 1.2rem;
+  background: #12d5b5;
+  border: 0;
+  color: #fff;
+}
+.pos-desc-wrapper {
+  margin-top: 15px;
+  background: #fff;
+}
+.pos-desc-wrapper .pos-desc-title {
+  padding: 11px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+}
+.pos-desc-wrapper .pos-desc-title:after {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  background: #eee;
+}
+.pos-desc-wrapper .pos-desc-content {
+  padding: 20px 15px 10px 15px;
+  font-size: 14px;
+}
 .pos-header {
   position: relative;
   height: 45px;
@@ -122,4 +161,127 @@ ul {
   height: 45px;
   font-size: 20px;
   text-align: center;
+}
+.posInfo {
+  position: relative;
+  background: #fff;
+  padding: 15px;
+  font-size: 0px;
+}
+.posInfo p {
+  margin-bottom: 10px;
+}
+.posInfo p span {
+  margin-right: 15px;
+  font-size: 14px;
+}
+.posInfo p span.salary {
+  color: red;
+}
+.posInfo p span:last-child {
+  margin-right: 0;
+}
+.posInfo p.desc {
+  font-size: 14px;
+}
+.posInfo p:last-child {
+  margin-bottom: 0;
+}
+.posInfo .pos-collect {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+}
+.posInfo:after {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  background: #eee;
+}
+.posCompany {
+  position: relative;
+  background-color: #fff;
+  padding: 11px 15px;
+  font-size: 0;
+}
+.posCompany .left {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 15px;
+  width: 45px;
+  height: 45px;
+}
+.posCompany .right {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+}
+.posCompany .right p:first-of-type {
+  margin-bottom: 10px;
+}
+.posCompany:after {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  background-color: #eee;
+}
+.posClass {
+  background: #fff;
+  font-size: 0;
+}
+.posClass .header-wrapper {
+  position: relative;
+  padding: 11px 15px 6px 15px;
+}
+.posClass .header-wrapper .title {
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.posClass .header-wrapper .nav-wrapper button {
+  padding: 6px 15px;
+  margin-right: 10px;
+  border-radius: 15px;
+  background: #def8f5;
+}
+.posClass .header-wrapper .nav-wrapper button.active {
+  color: #fff;
+  background: #12d5b5;
+}
+.posClass .header-wrapper:after {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  background: #eee;
+}
+.posClass .posList-wrapper {
+  font-size: 14px;
+}
+.posClass .posList-wrapper .posList-item {
+  position: relative;
+  padding: 11px 15px;
+}
+.posClass .posList-wrapper .posList-item .item-name {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.posClass .posList-wrapper .posList-item .salary {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: red;
 }

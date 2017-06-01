@@ -1,12 +1,15 @@
 <div class="posInfo">
     <p>
-        <span title="name">销售</span>
-        <span title="salary">3k-5k</span>
+        <span class="name">{{position.name}}</span>
+        <span class="salary">{{position.salaryName}}</span>
     </p>
     <p>
-        <span class="city">上海</span>
-        <span class="workTime">1-3年</span>
-        <span class="education">专科</span>
+        <span class="city">{{position.cityName}}</span>
+        <span class="workTime">{{position.experience}}</span>
+        <span class="education">{{position.education}}</span>
     </p>
-    <p class="desc">成长空间大</p>
+    <p class="desc">{{position.benefit}}</p>
+    <div class="pos-collect">
+        <img ng-show="isLogin" ng-src="{{position.imageUrl}}" width="100%" height="100%">
+    </div>
 </div>

@@ -2,58 +2,62 @@ var app = angular.module('app',['ui.router']);
 
 app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
     $stateProvider.state('home',{
-        url:'/home',
-        templateUrl:'view/home.html',
-        controller:'homeCtrl'
+        url: '/home',
+        templateUrl: 'view/home.html',
+        controller: 'homeCtrl'
     })
     .state('search',{
-        url:'/search',
-        templateUrl:'view/search.html',
-        controller:'searchCtrl'
+        url: '/search',
+        templateUrl: 'view/search.html',
+        controller: 'searchCtrl'
     })
     .state('my',{
-        url:'/my',
-        templateUrl:'view/my.html',
-        controller:'myCtrl'
+        url: '/my',
+        templateUrl: 'view/my.html',
+        controller: 'myCtrl'
     })
     .state('position',{
-        url:'/position/:id',
-        templateUrl:'view/position.html',
-        controller:'positionCtrl'
+        url: '/position/:id',
+        templateUrl: 'view/position.html',
+        controller: 'positionCtrl'
+    })
+    .state('company',{
+        url: '/company/:id',
+        templateUrl: 'view/company.html',
+        controller: 'companyCtrl'
     });
 
     $urlRouterProvider.otherwise('home');
 }]);
 
-app.controller('homeCtrl',['$scope',function($scope){
-     $scope.list = [
-         {
-             id: 1,
-             name: '销售',
-             imgSrc: './image/company-3.png',
-             company: '千度',
-             city: '上海',
-             industry: '互联网',
-             time:'2016-06-01 11:05'
-         },
-         {
-             id: 2,
-             name: 'WEB前端',
-             imgSrc: './image/company-1.png',
-             company: '慕课网',
-             city: '北京',
-             industry: '互联网',
-             time:'2016-06-01 01:05'
-         }
-     ]
+app.controller('companyCtrl',['$scope',function($scope){
+
+}]);
+
+app.controller('homeCtrl',['$scope','$http',function($scope,$http){
+    $http.get('/data/positionList.json')
+        .success(function(res){
+            $scope.list = res;
+        })
+        .error(function(res){
+            console.log(res);
+        });
 }]);
 
 app.controller('myCtrl',['$scope',function($scope){
 
 }]);
 
-app.controller('positionCtrl',['$scope',function($scope){
+app.controller('positionCtrl',['$scope','$http','$state',function($scope,$http,$state){
+    $scope.isLogin = true;
 
+    $http.get('/data/position.json?id=' + $state.params.id)
+        .success(function(res){
+            $scope.position = res;
+        })
+        .error(function(res){
+            console.log(res);
+        });
 }]);
 
 app.controller('searchCtrl',['$scope',function($scope){
@@ -87,6 +91,22 @@ app.directive('mainList',function(){
     };
 });
 
+app.directive('posClass',[function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'view/template/posClass.html'
+    };
+}]);
+
+app.directive('posCompany',[function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'view/template/posCompany.html'
+    };
+}]);
+
 app.directive('posHeader',[function(){
     return {
         restrict: 'E',
@@ -107,6 +127,14 @@ app.directive('posInfo',[function(){
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'view/template/posInfo.html'
+        templateUrl: 'view/template/posInfo.html',
+        scope: {
+            isActive:'=',
+            isLogin: '=',
+            position: '='
+        },
+        link: function($scope){
+            $scope.imagePath = $scope.isActive ? 'image/star-active.png' : 'image/star.png';
+        }
     };
 }]);

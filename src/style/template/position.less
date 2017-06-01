@@ -1,0 +1,41 @@
+.pos-bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%; 
+
+    button{
+        width:100%;
+        .h(45);
+        background: @themeColor;
+        border:0;
+        color:#fff;
+    }
+}
+
+.pos-desc-wrapper{
+    margin-top:15px;
+    background:#fff;
+
+    .pos-desc-title{
+        padding:11px 15px;
+        font-size:14px;
+        font-weight: bold;
+        position: relative;
+
+        &:after{
+            position:absolute;
+            left:15px;
+            right:0;
+            bottom:0;
+            height:1px;
+            content:'';
+            background:#eee;
+        }
+    }
+
+    .pos-desc-content{
+        padding:20px 15px 10px 15px;
+        font-size:14px;
+    }
+}

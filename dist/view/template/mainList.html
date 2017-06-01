@@ -2,12 +2,12 @@
     <ul>
         <li ui-sref="position({id:item.id})" ng-repeat="item in data">
             <div class="left">
-                <img ng-src="{{item.imgSrc}}" width="100%" height="100%">
+                <img ng-src="{{item.imageUrl}}" width="100%" height="100%">
             </div>
             <div class="right">
-                <h3 class="title">{{item.name}}</h3>
-                <p class="detail">{{item.company}}【{{item.city}}】 {{item.industry}}</p>
-                <p class="time">{{item.time}}</p>
+                <h3 class="title">{{item.job}}</h3>
+                <p class="detail">{{item.companyName}}【{{item.cityName}}】 {{item.industryName}}</p>
+                <p class="time">{{item.date}}</p>
             </div>
         </li>
     </ul>

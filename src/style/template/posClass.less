@@ -1,0 +1,62 @@
+.posClass{
+    background:#fff;
+    font-size:0;
+
+    .header-wrapper{
+        position: relative;
+        padding:11px 15px 6px 15px;
+
+        .title{
+            margin-bottom:20px;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        .nav-wrapper{
+            button{
+                padding:6px 15px;
+                margin-right:10px;
+                border-radius:15px;
+                background:#def8f5;
+
+                &.active{
+                    color:#fff;
+                    background:@themeColor;
+                }
+            }
+        }
+
+        &:after{
+            position:absolute;
+            left:15px;
+            right:0;
+            bottom:0;
+            height:1px;
+            content:'';
+            background:#eee;
+        }
+    }
+
+    .posList-wrapper{
+        font-size: 14px;
+
+        .posList-item{
+            position:relative;
+            padding:11px 15px;
+
+            .item-name{
+                margin-bottom:6px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .salary{
+                position: absolute;
+                right:15px;
+                top:50%;
+                transform: translateY(-50%);
+                color:red;
+            }
+        }
+    }
+}

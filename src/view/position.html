@@ -1,9 +1,12 @@
 <pos-header title="职位详情"></pos-header>
-<pos-info></pos-info>
+<pos-info position="position" is-login="isLogin"></pos-info>
 <pos-company></pos-company>
-<div class="detail">
-    <h3 class="title">职位描述</h3>
+<div class="pos-desc-wrapper">
+    <h3 class="pos-desc-title">职位描述</h3>
+    <div class="pos-desc-content">
+        岗位职责
+    </div>
 </div>
-<div class="btn">
-    <button type="button" name="button">投个简历</button>
+<div class="pos-bottom">
+    <button type="button" name="button" ng-bind="isLogin ? '投个简历' : '去登陆'"></button>
 </div>
