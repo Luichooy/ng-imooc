@@ -19,6 +19,8 @@
   ],
   "dependencies": {
     "angular": "1.5.8",
-    "angular-ui-router": "ui-router#^1.0.3+hybrid-2.0.0-2"
+    "angular-ui-router": "ui-router#^1.0.3+hybrid-2.0.0-2",
+    "angular-cookies": "1.5.8",
+    "normalize-css": "^7.0.0"
   }
 }

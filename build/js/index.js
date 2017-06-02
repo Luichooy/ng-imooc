@@ -1,4 +1,4 @@
-var app = angular.module('app',['ui.router']);
+var app = angular.module('app',['ui.router','ngCookies']);
 
 app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
     $stateProvider.state('home',{
@@ -57,39 +57,48 @@ app.controller('myCtrl',['$scope',function($scope){
 app.controller('positionCtrl',['$scope','$q','$http','$state',function($scope,$q,$http,$state){
     $scope.isLogin = true;
 
-    function getPosition(){
-        var defered = $q.defer();
-        $http.get('/data/position.json?id=' + $state.params.id)
-            .success(function(res){
-                $scope.position = res;
-                defered.resolve(res);
-            })
-            .error(function(err){
-                console.log(err);
-                defered.reject(err);
-            });
-        return defered.promise;
-    }
+    $http.get('/data/position.json?id=' + $state.params.id).then(function(res){
+        $scope.position = res.data;
 
-    getPosition().then(function(obj){
-        getCompany(obj.companyID);
-    },function(obj){
-        console.log(obj)
+        $http.get('data/company.json?id='+$scope.position.companyID).then(function(res){
+            $scope.company = res.data;
+        },function(err){
+            console.log(err);
+        });
+
+    },function(err){
+        console.log(err);
     });
-
-    function getCompany(id){
-        $http.get('data/company.json?id='+id)
-            .success(function(res){
-                $scope.company = res;
-            })
-            .error(function(err){
-                console.log(err);
-            });
-    }
 }]);
 
 app.controller('searchCtrl',['$scope',function($scope){
 
+}]);
+
+// app.service('cache',['$cookies',function($cookies){
+//       this.put = function(key,value){
+//           $cookies.put(key,value);
+//       };
+//       this.get = function(key){
+//           return $cookies.get(key);
+//       };
+//       this.remove = function(key){
+//           $cookies.remove(key);
+//       }
+// }]);
+
+app.factory('cache',['$cookies',function($cookies){
+    return {
+        put: function(key,value){
+            $cookies.put(key,value);
+        },
+        get: function(key){
+            return $cookies.get(key);
+        },
+        remove: function(key){
+            $cookies.remove(key);
+        }
+    };
 }]);
 
 app.directive('appFooter',function(){
@@ -133,6 +142,7 @@ app.directive('posClass',[function(){
 
             //此时$scope对象中的company属性还没有建立起来，因此通过$watch来检测$scope.company。
             $scope.$watch('company',function(newVal,oldVal){
+                console.log(newVal);
                 if(newVal){
                     $scope.showPositionList(0);
                 }
