@@ -1,0 +1,31 @@
+.search-tab{
+
+    .tab{
+        display: flex;
+        justify-content:space-between;
+        background:#f7f7f7;
+        font-size:14px;
+
+        .tab-item{
+            flex:1;
+            height:30px;
+            line-height:30px;
+            text-align:center;
+            position:relative;
+
+            &.active{
+                color:@themeColor;    
+            }
+
+            &.active:after{
+                position:absolute;
+                left:0;
+                right:0;
+                bottom:0;
+                height:1px;
+                content:'';
+                background:@themeColor;
+            }
+        }
+    }
+}

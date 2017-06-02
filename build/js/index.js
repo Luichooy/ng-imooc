@@ -71,34 +71,12 @@ app.controller('positionCtrl',['$scope','$q','$http','$state',function($scope,$q
     });
 }]);
 
-app.controller('searchCtrl',['$scope',function($scope){
-
-}]);
-
-// app.service('cache',['$cookies',function($cookies){
-//       this.put = function(key,value){
-//           $cookies.put(key,value);
-//       };
-//       this.get = function(key){
-//           return $cookies.get(key);
-//       };
-//       this.remove = function(key){
-//           $cookies.remove(key);
-//       }
-// }]);
-
-app.factory('cache',['$cookies',function($cookies){
-    return {
-        put: function(key,value){
-            $cookies.put(key,value);
-        },
-        get: function(key){
-            return $cookies.get(key);
-        },
-        remove: function(key){
-            $cookies.remove(key);
-        }
-    };
+app.controller('searchCtrl',['$scope','$http',function($scope,$http){
+    $http.get('data/positionList.json').then(function(res){
+        $scope.list = res.data;
+    },function(err){
+        console.log(err);
+    });
 }]);
 
 app.directive('appFooter',function(){
@@ -190,6 +168,48 @@ app.directive('posInfo',[function(){
         },
         link: function($scope){
             $scope.imagePath = $scope.isActive ? 'image/star-active.png' : 'image/star.png';
+        }
+    };
+}]);
+
+app.directive('searchTab',[function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'view/template/searchTab.html'
+    };
+}]);
+
+app.directive('sheet',[function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'view/template/sheet.html'
+    };
+}]);
+
+// app.service('cache',['$cookies',function($cookies){
+//       this.put = function(key,value){
+//           $cookies.put(key,value);
+//       };
+//       this.get = function(key){
+//           return $cookies.get(key);
+//       };
+//       this.remove = function(key){
+//           $cookies.remove(key);
+//       }
+// }]);
+
+app.factory('cache',['$cookies',function($cookies){
+    return {
+        put: function(key,value){
+            $cookies.put(key,value);
+        },
+        get: function(key){
+            return $cookies.get(key);
+        },
+        remove: function(key){
+            $cookies.remove(key);
         }
     };
 }]);
