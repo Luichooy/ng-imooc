@@ -307,17 +307,15 @@ input {
   color: red;
 }
 .search-bar {
-  position: relative;
+  display: flex;
   height: 45px;
   background: #12d5b5;
   color: #fff;
   font-size: 0px;
 }
 .search-bar .cancle-wrapper {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: inline-block;
+  flex: 0 0 60px;
+  justify-content: space-between;
   width: 60px;
   height: 45px;
   line-height: 45px;
@@ -328,13 +326,11 @@ input {
   font-size: 16px;
 }
 .search-bar .search-input-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  flex: 1 1 auto;
   height: 45px;
   line-height: 45px;
-  display: inline-block;
   font-size: 16px;
+  text-align: center;
 }
 .search-bar .search-input-wrapper input {
   height: 20px;
@@ -342,10 +338,7 @@ input {
   border-radius: 20px;
 }
 .search-bar .search-btn-wrapper {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: inline-block;
+  flex: 0 0 100px;
   width: 100px;
   height: 45px;
   line-height: 45px;
@@ -372,8 +365,8 @@ input {
 }
 .search-tab .tab .tab-item {
   flex: 1;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   position: relative;
 }
@@ -388,4 +381,49 @@ input {
   height: 1px;
   content: '';
   background: #12d5b5;
+}
+.sheet .mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+.sheet .list-wrapper {
+  position: fixed;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  color: #1063e5;
+}
+.sheet .list-wrapper .list,
+.sheet .list-wrapper .cancel {
+  border-radius: 3px;
+  overflow: hidden;
+}
+.sheet .list-wrapper .list li,
+.sheet .list-wrapper .cancel li {
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  background-color: #f1f2f3;
+}
+.sheet .list-wrapper .list .list-item {
+  position: relative;
+}
+.sheet .list-wrapper .list .list-item:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  content: '';
+  background-color: #eee;
+}
+.sheet .list-wrapper .list .list-item:last-child:after {
+  height: 0;
+}
+.sheet .list-wrapper .cancel {
+  margin-top: 5px;
 }

@@ -1,7 +1,5 @@
 <div class="search-tab">
     <ul class="tab">
-        <li class="tab-item active">城市</li>
-        <li class="tab-item">薪资</li>
-        <li class="tab-item">公司规模</li>
+        <li ng-repeat="item in list" ng-click="clickTab(item)"  class="tab-item {{activeId===item.id?'active':''}}">{{item.name}}</li>
     </ul>
 </div>

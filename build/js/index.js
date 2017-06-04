@@ -1,5 +1,47 @@
 var app = angular.module('app',['ui.router','ngCookies']);
 
+app.value('dict',{});
+
+app.run(['$http','dict',function($http,dict){
+    $http.get('data/city.json').then(function(res){
+        dict.city = res.data;
+    },function(err){
+        console.log(err);
+    });
+
+    $http.get('data/salary.json').then(function(res){
+        dict.salary = res.data;
+    },function(err){
+        console.log(err);
+    });
+
+    $http.get('data/scale.json').then(function(res){
+        dict.scale = res.data;
+    },function(err){
+        console.log(err);
+    });
+}]);
+
+// app.run(['$scope','$http',function($scope,$http){
+//     $http.get('data/city.json').then(function(res){
+//         dict.city = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+//
+//     $http.get('data/salary.json').then(function(res){
+//         dict.salary = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+//
+//     $http.get('data/scale.json').then(function(res){
+//         dict.scale = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+// }]);
+
 app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
     $stateProvider.state('home',{
         url: '/home',
@@ -71,12 +113,53 @@ app.controller('positionCtrl',['$scope','$q','$http','$state',function($scope,$q
     });
 }]);
 
-app.controller('searchCtrl',['$scope','$http',function($scope,$http){
+app.controller('searchCtrl',['$scope','$http','dict',function($scope,$http,dict){
+
     $http.get('data/positionList.json').then(function(res){
         $scope.list = res.data;
     },function(err){
         console.log(err);
     });
+
+    $scope.search = function(){
+        var searchKey = $scope.searchKey;
+
+        $http.get('data/positionList.json?name='+searchKey).then(function(res){
+            $scope.list = res.data;
+        },function(err){
+            console.log(err);
+        });
+    };
+
+    $scope.cancel = function(){
+        $scope.searchKey = '';
+        $scope.search();
+    };
+
+    $scope.searchList = [
+        {
+            id: 'city',
+            name: '城市'
+        },
+        {
+            id: 'salary',
+            name: '薪资'
+        },
+        {
+            id: 'scale',
+            name: '公司规模'
+        }
+    ];
+    $scope.sheet = {};
+    $scope.showSheet = function(id,name){
+        // console.log(id);
+        // console.log(dict);
+        $scope.sheet.data = dict[id];
+        $scope.sheet.visible = true;
+    };
+    $scope.sselect = function(id,name){
+        console.log(id+name)
+    };
 }]);
 
 app.directive('appFooter',function(){
@@ -176,7 +259,19 @@ app.directive('searchTab',[function(){
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'view/template/searchTab.html'
+        templateUrl: 'view/template/searchTab.html',
+        scope: {
+            list: '=',
+            tabClick: '&'
+        },
+        link: function($scope){
+            $scope.activeId = $scope.list[0].id;
+
+            $scope.clickTab = function(tab){
+                $scope.activeId = tab.id;
+                $scope.tabClick(tab);
+            }
+        }
     };
 }]);
 
@@ -184,7 +279,17 @@ app.directive('sheet',[function(){
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'view/template/sheet.html'
+        templateUrl: 'view/template/sheet.html',
+        scope: {
+            data: '=',
+            visible: '=',
+            select: '&'
+        },
+        link: function($scope){
+            $scope.hideSheet = function(){
+                $scope.visible = false;
+            };
+        }
     };
 }]);
 

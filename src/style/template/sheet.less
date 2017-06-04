@@ -1,0 +1,58 @@
+.sheet{
+    .mask{
+        position:fixed;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        background:rgba(0,0,0,0.2);
+    }
+
+    .list-wrapper{
+        position:fixed;
+        left:5px;
+        right:5px;
+        bottom:5px;
+        color:#1063e5;
+
+        .list,.cancel{
+            border-radius: 3px;
+            overflow:hidden;
+
+            li{
+                width:100%;
+                padding:15px 0;
+                text-align:center;
+                background-color:#f1f2f3;
+            }
+        }
+
+        .list{
+            // max-height:100px;
+
+            .list-item{
+                position:relative;
+
+                &:after{
+                    position:absolute;
+                    left:0;
+                    right:0;
+                    bottom:0;
+                    height:1px;
+                    content:'';
+                    background-color:#eee;
+                }
+
+                &:last-child:after{
+                    height:0;
+                }
+            }
+        }
+
+        .cancel{
+            margin-top:5px;
+        }
+
+    }
+
+}

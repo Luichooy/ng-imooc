@@ -1,16 +1,16 @@
 <div class="search-bar">
-    <div class="cancle-wrapper">
+    <div class="cancle-wrapper" ng-click="cancel()">
         <a href="javacript:;">取消</a>
     </div>
     <div class="search-input-wrapper">
-        <input type="text" placeholder="搜索职位/公司/城市">
+        <input type="text" placeholder="搜索职位/公司/城市" ng-model="searchKey">
     </div>
-    <div class="search-btn-wrapper">
+    <div class="search-btn-wrapper" ng-click="search()">
         <img src="image/search.png">
         <a href="javascript:;">搜索</a>
     </div>
 </div>
-<search-tab></search-tab>
+<search-tab list="searchList" tab-click="showSheet(id,name)"></search-tab>
 <main-list data="list"></main-list>
 <app-footer></app-footer>
-<sheet></sheet>
+<sheet data="sheet.data" visible="sheet.visible" select="sselect(id,name)"></sheet>
