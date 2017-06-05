@@ -41,6 +41,16 @@
             &:-ms-input-placeholder{
                 color:rgba(255,255,255,0.8);
             }
+
+            &.ng-invalid{
+                &+span{
+                    position:absolute;
+                    right:0;
+                    top:50%;
+                    transform: translateY(-50%);
+                    color:red;
+                }
+            }
         }
 
         .account-wrapper{
@@ -65,6 +75,7 @@
         }
 
         .password-wrapper{
+            position:relative;
             display: flex;
 
             .icon-lock{

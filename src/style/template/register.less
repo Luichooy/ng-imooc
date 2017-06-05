@@ -41,6 +41,16 @@
             &:-ms-input-placeholder{
                 color:rgba(255,255,255,0.8);
             }
+
+            &.ng-invalid{
+                &+span{
+                    position: absolute;
+                    right:0;
+                    top:50%;
+                    transform: translateY(-50%);
+                    color:red;
+                }
+            }
         }
 
         .account-wrapper{
@@ -66,6 +76,7 @@
 
         .password-wrapper{
             display: flex;
+            position: relative;
 
             .icon-lock{
                 background-image: url('../image/lock.png');
@@ -109,6 +120,11 @@
                 border:1px solid @themeColor;
                 background:rgba(18,213,181,0.2);
                 color:rgba(255,255,255,0.8);
+
+                &.disabled{
+                    color:red;
+                    background:rgba(204,204,204,0.5);
+                }
             }
         }
     }

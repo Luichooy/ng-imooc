@@ -1,3 +1,3 @@
-app.controller('loginCtrl',['$scope',function($scope){
+app.controller('favoriteCtrl',['$scope',function($scope){
 
 }]);

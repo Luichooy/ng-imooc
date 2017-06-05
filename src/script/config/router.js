@@ -43,6 +43,11 @@ app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRo
         url: '/post',
         templateUrl: 'view/post.html',
         controller: 'postCtrl'
+    })
+    .state('collect',{
+        url:'/collect',
+        templateUrl:'view/collect.html',
+        controller:'collectCtrl'
     });
 
     $urlRouterProvider.otherwise('home');

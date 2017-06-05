@@ -1,4 +1,125 @@
-var app = angular.module('app',['ui.router','ngCookies']);
+var app = angular.module('app',['ui.router','ngCookies','validation']);
+
+app.value('dict',{});
+
+app.run(['$http','dict',function($http,dict){
+    $http.get('data/city.json').then(function(res){
+        dict.city = res.data;
+    },function(err){
+        console.log(err);
+    });
+
+    $http.get('data/salary.json').then(function(res){
+        dict.salary = res.data;
+    },function(err){
+        console.log(err);
+    });
+
+    $http.get('data/scale.json').then(function(res){
+        dict.scale = res.data;
+    },function(err){
+        console.log(err);
+    });
+}]);
+
+// app.run(['$scope','$http',function($scope,$http){
+//     $http.get('data/city.json').then(function(res){
+//         dict.city = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+//
+//     $http.get('data/salary.json').then(function(res){
+//         dict.salary = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+//
+//     $http.get('data/scale.json').then(function(res){
+//         dict.scale = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+// }]);
+
+
+app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+    $stateProvider.state('home',{
+        url: '/home',
+        templateUrl: 'view/home.html',
+        controller: 'homeCtrl'
+    })
+    .state('search',{
+        url: '/search',
+        templateUrl: 'view/search.html',
+        controller: 'searchCtrl'
+    })
+    .state('my',{
+        url: '/my',
+        templateUrl: 'view/my.html',
+        controller: 'myCtrl'
+    })
+    .state('position',{
+        url: '/position/:id',
+        templateUrl: 'view/position.html',
+        controller: 'positionCtrl'
+    })
+    .state('company',{
+        url: '/company/:id',
+        templateUrl: 'view/company.html',
+        controller: 'companyCtrl'
+    })
+    .state('login',{
+        url: '/login',
+        templateUrl: 'view/login.html',
+        controller: 'loginCtrl'
+    })
+    .state('register',{
+        url: '/register',
+        templateUrl: 'view/register.html',
+        controller: 'registerCtrl'
+    })
+    .state('favorite',{
+        url: '/favorite',
+        templateUrl: 'view/favorite.html',
+        controller: 'favoriteCtrl'
+    })
+    .state('post',{
+        url: '/post',
+        templateUrl: 'view/post.html',
+        controller: 'postCtrl'
+    })
+    .state('collect',{
+        url:'/collect',
+        templateUrl:'view/collect.html',
+        controller:'collectCtrl'
+    });
+
+    $urlRouterProvider.otherwise('home');
+}]);
+
+app.config(['$validationProvider',function($validationProvider){
+    var expression = {
+        mobile: /^1[\d]{10}$/,
+        password:function(value){
+            var str = value + '';
+            return str.length > 5;
+        }
+    };
+
+    var defaultMsg = {
+        mobile:{
+            success:'',
+            error:'必须是11位手机号'
+        },
+        password:{
+            success:'',
+            error:'长度至少6位'
+        }
+    };
+
+    $validationProvider.setExpression(expression).setDefaultMsg(defaultMsg);
+}]);
 
 app.controller('companyCtrl',['$scope','$http','$state',function($scope,$http,$state){
     $http.get('data/company.json?id='+$state.params.id)
@@ -10,7 +131,7 @@ app.controller('companyCtrl',['$scope','$http','$state',function($scope,$http,$s
         });
 }]);
 
-app.controller('loginCtrl',['$scope',function($scope){
+app.controller('favoriteCtrl',['$scope',function($scope){
 
 }]);
 
@@ -25,7 +146,14 @@ app.controller('homeCtrl',['$scope','$http',function($scope,$http){
 }]);
 
 app.controller('loginCtrl',['$scope',function($scope){
+    $scope.user = {
+        username: '',
+        password: ''
+    };
 
+    $scope.submit = function(){
+        console.log($scope.user);
+    }
 }]);
 
 app.controller('myCtrl',['$scope',function($scope){
@@ -50,11 +178,52 @@ app.controller('positionCtrl',['$scope','$q','$http','$state',function($scope,$q
 }]);
 
 app.controller('postCtrl',['$scope',function($scope){
+    $scope.searchList = [
+        {
+            id:'all',
+            name:'全部'
+        },
+        {
+            id:'pass',
+            name:'面试邀请'
+        },
+        {
+            id:'fail',
+            name:'不合适'
+        }
+    ];
 
+    $scope.showSheet = function(id,name){
+        console.log(id+name);
+    };
 }]);
 
-app.controller('registerCtrl',['$scope',function($scope){
+app.controller('registerCtrl',['$scope','$http','$interval',function($scope,$http,$interval){
+    $scope.submit = function(){
+        console.log($scope.user);
+    };
 
+    $scope.sendCode = function(){
+        $http.get('data/code.json').then(function(res){
+            var data = res.data;
+            
+            if(data.state === 1){
+                var count = 60;
+                $scope.time = '60s';
+                var interval = $interval(function(){
+                    if(count <= 0){
+                        $interval.cancel(interval);
+                        $scope.time = '';
+                        return;
+                    }
+                    count --;
+                    $scope.time = count + 's';
+                },1000);
+            }
+        },function(err){
+            console.log(err);
+        });
+    }
 }]);
 
 app.controller('searchCtrl',['$scope','$http','dict',function($scope,$http,dict){
@@ -266,98 +435,6 @@ app.directive('sheet',[function(){
             };
         }
     };
-}]);
-
-app.value('dict',{});
-
-app.run(['$http','dict',function($http,dict){
-    $http.get('data/city.json').then(function(res){
-        dict.city = res.data;
-    },function(err){
-        console.log(err);
-    });
-
-    $http.get('data/salary.json').then(function(res){
-        dict.salary = res.data;
-    },function(err){
-        console.log(err);
-    });
-
-    $http.get('data/scale.json').then(function(res){
-        dict.scale = res.data;
-    },function(err){
-        console.log(err);
-    });
-}]);
-
-// app.run(['$scope','$http',function($scope,$http){
-//     $http.get('data/city.json').then(function(res){
-//         dict.city = res.data;
-//     },function(err){
-//         console.log(err);
-//     });
-//
-//     $http.get('data/salary.json').then(function(res){
-//         dict.salary = res.data;
-//     },function(err){
-//         console.log(err);
-//     });
-//
-//     $http.get('data/scale.json').then(function(res){
-//         dict.scale = res.data;
-//     },function(err){
-//         console.log(err);
-//     });
-// }]);
-
-app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
-    $stateProvider.state('home',{
-        url: '/home',
-        templateUrl: 'view/home.html',
-        controller: 'homeCtrl'
-    })
-    .state('search',{
-        url: '/search',
-        templateUrl: 'view/search.html',
-        controller: 'searchCtrl'
-    })
-    .state('my',{
-        url: '/my',
-        templateUrl: 'view/my.html',
-        controller: 'myCtrl'
-    })
-    .state('position',{
-        url: '/position/:id',
-        templateUrl: 'view/position.html',
-        controller: 'positionCtrl'
-    })
-    .state('company',{
-        url: '/company/:id',
-        templateUrl: 'view/company.html',
-        controller: 'companyCtrl'
-    })
-    .state('login',{
-        url: '/login',
-        templateUrl: 'view/login.html',
-        controller: 'loginCtrl'
-    })
-    .state('register',{
-        url: '/register',
-        templateUrl: 'view/register.html',
-        controller: 'registerCtrl'
-    })
-    .state('favorite',{
-        url: '/favorite',
-        templateUrl: 'view/favorite.html',
-        controller: 'favoriteCtrl'
-    })
-    .state('post',{
-        url: '/post',
-        templateUrl: 'view/post.html',
-        controller: 'postCtrl'
-    });
-
-    $urlRouterProvider.otherwise('home');
 }]);
 
 app.filter('filterByObj',[function(){

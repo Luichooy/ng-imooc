@@ -1,3 +1,52 @@
-.my{
-    
+.content-wrapper{
+    width:80%;
+    margin:0 auto;
+    margin-top:100px;
+    .userinfo-wrapper{
+        text-align: center;
+    }
+
+    .operate-wrapper{
+        margin:30px 0 20px 0;
+        width:100%;
+        height:auto;
+        clear:both;
+
+        &:after{
+            display: block;
+            content:'';
+            clear:both;
+        }
+
+        .post{
+            float:left;
+            width:45%;
+            height:120px;
+            line-height:120px;
+            text-align:center;
+            background:@themeColor;
+            color:#fff;
+        }
+
+        .collect{
+            float:right;
+            width:45%;
+            height:120px;
+            line-height:120px;
+            text-align: center;
+            background:@themeColor;
+            color:#fff;
+        }
+    }
+
+    .quit-wrapper{
+
+        .quit{
+            width:100%;
+            padding:11px 0;
+            border-radius:2px;
+            background:red;
+            color:#fff;
+        }
+    }
 }
