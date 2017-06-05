@@ -427,3 +427,214 @@ input {
 .sheet .list-wrapper .cancel {
   margin-top: 5px;
 }
+.login {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('../image/background.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.login .input-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 70%;
+}
+.login .input-wrapper .icon {
+  flex: 0 0 45px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.login .input-wrapper input {
+  flex: 1;
+  padding: 11px 0;
+  padding-left: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: #fff;
+}
+.login .input-wrapper input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.login .input-wrapper input:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.login .input-wrapper input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.login .input-wrapper input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.login .input-wrapper .account-wrapper {
+  position: relative;
+  display: flex;
+}
+.login .input-wrapper .account-wrapper:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  content: '';
+  background: rgba(255, 255, 255, 0.7);
+}
+.login .input-wrapper .account-wrapper .icon-account {
+  background-image: url('../image/account.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+}
+.login .input-wrapper .password-wrapper {
+  display: flex;
+}
+.login .input-wrapper .password-wrapper .icon-lock {
+  background-image: url('../image/lock.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+}
+.login .btn-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.login .btn-wrapper button {
+  display: block;
+  margin-bottom: 10px;
+  padding: 11px 0;
+  width: 100%;
+}
+.login .btn-wrapper button:first-child {
+  border: 1px solid #12d5b5;
+  background: #12d5b5;
+  color: #fff;
+}
+.login .btn-wrapper button:last-child {
+  border: 1px solid #12d5b5;
+  background: rgba(18, 213, 181, 0.2);
+  color: #12d5b5;
+}
+.register {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('../image/background.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.register .input-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50%;
+}
+.register .input-wrapper .icon {
+  flex: 0 0 45px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.register .input-wrapper .account-wrapper input,
+.register .input-wrapper .password-wrapper input {
+  flex: 1;
+  padding: 11px 0;
+  padding-left: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: #fff;
+}
+.register .input-wrapper .account-wrapper input::-webkit-input-placeholder,
+.register .input-wrapper .password-wrapper input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .account-wrapper input:-moz-placeholder,
+.register .input-wrapper .password-wrapper input:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .account-wrapper input::-moz-placeholder,
+.register .input-wrapper .password-wrapper input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .account-wrapper input:-ms-input-placeholder,
+.register .input-wrapper .password-wrapper input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .account-wrapper {
+  position: relative;
+  display: flex;
+}
+.register .input-wrapper .account-wrapper:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  content: '';
+  background: rgba(255, 255, 255, 0.7);
+}
+.register .input-wrapper .account-wrapper .icon-account {
+  background-image: url('../image/account.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+}
+.register .input-wrapper .password-wrapper {
+  display: flex;
+}
+.register .input-wrapper .password-wrapper .icon-lock {
+  background-image: url('../image/lock.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+}
+.register .input-wrapper .code-wrapper {
+  margin: 30px 0;
+  display: flex;
+}
+.register .input-wrapper .code-wrapper input {
+  width: 100px;
+  padding: 11px 0;
+  padding-left: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: #fff;
+}
+.register .input-wrapper .code-wrapper input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .code-wrapper input:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .code-wrapper input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .code-wrapper input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .code-wrapper button {
+  flex: 1;
+  margin-left: 10px;
+  border: 1px solid #12d5b5;
+  background: rgba(18, 213, 181, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+.register .btn-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+.register .btn-wrapper button {
+  display: block;
+  margin-bottom: 10px;
+  padding: 11px 0;
+  width: 100%;
+}
+.register .btn-wrapper button:first-child {
+  border: 1px solid #12d5b5;
+  background: #12d5b5;
+  color: #fff;
+}
+.register .btn-wrapper button:last-child {
+  border: 1px solid #12d5b5;
+  background: rgba(18, 213, 181, 0.2);
+  color: #12d5b5;
+}

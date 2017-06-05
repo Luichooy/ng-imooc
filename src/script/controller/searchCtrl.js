@@ -36,13 +36,43 @@ app.controller('searchCtrl',['$scope','$http','dict',function($scope,$http,dict)
         }
     ];
     $scope.sheet = {};
+    $scope.filterObj = {};
+    var tabId = '';
     $scope.showSheet = function(id,name){
         // console.log(id);
         // console.log(dict);
+        tabId = id;
         $scope.sheet.data = dict[id];
         $scope.sheet.visible = true;
     };
     $scope.sselect = function(id,name){
-        console.log(id+name)
+        // 初始化filterObj;
+        if(id){
+            angular.forEach($scope.searchList,function(item){
+                if(item.id === tabId){
+                    item.name = name;
+                }
+            });
+            $scope.filterObj[tabId + 'Id'] = id;
+        }else{
+            delete $scope.filterObj[tabId + 'Id'];
+            angular.forEach($scope.searchList,function(item){
+                if(item.id === tabId){
+                    switch(item.id){
+                        case 'city':
+                            item.name = '城市';
+                            break;
+                        case 'salary':
+                            item.name='薪资';
+                            break;
+                        case 'scale':
+                            item.name='公司规模';
+                            break;
+                        default:
+                    }
+                }
+            });
+        }
+        $scope.sheet.visible = false;
     };
 }]);

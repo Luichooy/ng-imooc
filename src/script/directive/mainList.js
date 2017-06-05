@@ -4,7 +4,8 @@ app.directive('mainList',function(){
         replace:true,
         templateUrl:"view/template/mainList.html",
         scope: {
-            data: '='
+            data: '=',
+            filterObj: '='
         }
     };
 });

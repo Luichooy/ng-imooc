@@ -1,77 +1,5 @@
 var app = angular.module('app',['ui.router','ngCookies']);
 
-app.value('dict',{});
-
-app.run(['$http','dict',function($http,dict){
-    $http.get('data/city.json').then(function(res){
-        dict.city = res.data;
-    },function(err){
-        console.log(err);
-    });
-
-    $http.get('data/salary.json').then(function(res){
-        dict.salary = res.data;
-    },function(err){
-        console.log(err);
-    });
-
-    $http.get('data/scale.json').then(function(res){
-        dict.scale = res.data;
-    },function(err){
-        console.log(err);
-    });
-}]);
-
-// app.run(['$scope','$http',function($scope,$http){
-//     $http.get('data/city.json').then(function(res){
-//         dict.city = res.data;
-//     },function(err){
-//         console.log(err);
-//     });
-//
-//     $http.get('data/salary.json').then(function(res){
-//         dict.salary = res.data;
-//     },function(err){
-//         console.log(err);
-//     });
-//
-//     $http.get('data/scale.json').then(function(res){
-//         dict.scale = res.data;
-//     },function(err){
-//         console.log(err);
-//     });
-// }]);
-
-app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
-    $stateProvider.state('home',{
-        url: '/home',
-        templateUrl: 'view/home.html',
-        controller: 'homeCtrl'
-    })
-    .state('search',{
-        url: '/search',
-        templateUrl: 'view/search.html',
-        controller: 'searchCtrl'
-    })
-    .state('my',{
-        url: '/my',
-        templateUrl: 'view/my.html',
-        controller: 'myCtrl'
-    })
-    .state('position',{
-        url: '/position/:id',
-        templateUrl: 'view/position.html',
-        controller: 'positionCtrl'
-    })
-    .state('company',{
-        url: '/company/:id',
-        templateUrl: 'view/company.html',
-        controller: 'companyCtrl'
-    });
-
-    $urlRouterProvider.otherwise('home');
-}]);
-
 app.controller('companyCtrl',['$scope','$http','$state',function($scope,$http,$state){
     $http.get('data/company.json?id='+$state.params.id)
         .success(function(res){
@@ -82,6 +10,10 @@ app.controller('companyCtrl',['$scope','$http','$state',function($scope,$http,$s
         });
 }]);
 
+app.controller('loginCtrl',['$scope',function($scope){
+
+}]);
+
 app.controller('homeCtrl',['$scope','$http',function($scope,$http){
     $http.get('/data/positionList.json')
         .success(function(res){
@@ -90,6 +22,10 @@ app.controller('homeCtrl',['$scope','$http',function($scope,$http){
         .error(function(res){
             console.log(res);
         });
+}]);
+
+app.controller('loginCtrl',['$scope',function($scope){
+
 }]);
 
 app.controller('myCtrl',['$scope',function($scope){
@@ -111,6 +47,14 @@ app.controller('positionCtrl',['$scope','$q','$http','$state',function($scope,$q
     },function(err){
         console.log(err);
     });
+}]);
+
+app.controller('postCtrl',['$scope',function($scope){
+
+}]);
+
+app.controller('registerCtrl',['$scope',function($scope){
+
 }]);
 
 app.controller('searchCtrl',['$scope','$http','dict',function($scope,$http,dict){
@@ -151,14 +95,44 @@ app.controller('searchCtrl',['$scope','$http','dict',function($scope,$http,dict)
         }
     ];
     $scope.sheet = {};
+    $scope.filterObj = {};
+    var tabId = '';
     $scope.showSheet = function(id,name){
         // console.log(id);
         // console.log(dict);
+        tabId = id;
         $scope.sheet.data = dict[id];
         $scope.sheet.visible = true;
     };
     $scope.sselect = function(id,name){
-        console.log(id+name)
+        // 初始化filterObj;
+        if(id){
+            angular.forEach($scope.searchList,function(item){
+                if(item.id === tabId){
+                    item.name = name;
+                }
+            });
+            $scope.filterObj[tabId + 'Id'] = id;
+        }else{
+            delete $scope.filterObj[tabId + 'Id'];
+            angular.forEach($scope.searchList,function(item){
+                if(item.id === tabId){
+                    switch(item.id){
+                        case 'city':
+                            item.name = '城市';
+                            break;
+                        case 'salary':
+                            item.name='薪资';
+                            break;
+                        case 'scale':
+                            item.name='公司规模';
+                            break;
+                        default:
+                    }
+                }
+            });
+        }
+        $scope.sheet.visible = false;
     };
 }]);
 
@@ -184,7 +158,8 @@ app.directive('mainList',function(){
         replace:true,
         templateUrl:"view/template/mainList.html",
         scope: {
-            data: '='
+            data: '=',
+            filterObj: '='
         }
     };
 });
@@ -290,6 +265,117 @@ app.directive('sheet',[function(){
                 $scope.visible = false;
             };
         }
+    };
+}]);
+
+app.value('dict',{});
+
+app.run(['$http','dict',function($http,dict){
+    $http.get('data/city.json').then(function(res){
+        dict.city = res.data;
+    },function(err){
+        console.log(err);
+    });
+
+    $http.get('data/salary.json').then(function(res){
+        dict.salary = res.data;
+    },function(err){
+        console.log(err);
+    });
+
+    $http.get('data/scale.json').then(function(res){
+        dict.scale = res.data;
+    },function(err){
+        console.log(err);
+    });
+}]);
+
+// app.run(['$scope','$http',function($scope,$http){
+//     $http.get('data/city.json').then(function(res){
+//         dict.city = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+//
+//     $http.get('data/salary.json').then(function(res){
+//         dict.salary = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+//
+//     $http.get('data/scale.json').then(function(res){
+//         dict.scale = res.data;
+//     },function(err){
+//         console.log(err);
+//     });
+// }]);
+
+app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+    $stateProvider.state('home',{
+        url: '/home',
+        templateUrl: 'view/home.html',
+        controller: 'homeCtrl'
+    })
+    .state('search',{
+        url: '/search',
+        templateUrl: 'view/search.html',
+        controller: 'searchCtrl'
+    })
+    .state('my',{
+        url: '/my',
+        templateUrl: 'view/my.html',
+        controller: 'myCtrl'
+    })
+    .state('position',{
+        url: '/position/:id',
+        templateUrl: 'view/position.html',
+        controller: 'positionCtrl'
+    })
+    .state('company',{
+        url: '/company/:id',
+        templateUrl: 'view/company.html',
+        controller: 'companyCtrl'
+    })
+    .state('login',{
+        url: '/login',
+        templateUrl: 'view/login.html',
+        controller: 'loginCtrl'
+    })
+    .state('register',{
+        url: '/register',
+        templateUrl: 'view/register.html',
+        controller: 'registerCtrl'
+    })
+    .state('favorite',{
+        url: '/favorite',
+        templateUrl: 'view/favorite.html',
+        controller: 'favoriteCtrl'
+    })
+    .state('post',{
+        url: '/post',
+        templateUrl: 'view/post.html',
+        controller: 'postCtrl'
+    });
+
+    $urlRouterProvider.otherwise('home');
+}]);
+
+app.filter('filterByObj',[function(){
+    return function(list,obj){
+        var result = [];
+        angular.forEach(list,function(item){
+
+            var isEqual = true;
+            for(var attr in obj){
+                if(item[attr] !== obj[attr]){
+                    isEqual = false;
+                }
+            }
+            if(isEqual){
+                result.push(item);
+            }
+        });
+        return result;
     };
 }]);
 
