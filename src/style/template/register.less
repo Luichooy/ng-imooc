@@ -9,9 +9,10 @@
     background-size: 100% 100%;
 
     .input-wrapper{
+        position:relative;
         width:80%;
         margin:0 auto;
-        margin-top:50%;
+        margin-top:40%;
 
         .icon{
             flex:0 0 45px;
@@ -45,26 +46,26 @@
             &.ng-invalid{
                 &+span{
                     position: absolute;
-                    right:0;
-                    top:50%;
-                    transform: translateY(-50%);
+                    left:0;
+                    bottom:-25px;
                     color:red;
                 }
             }
         }
 
         .account-wrapper{
-            position: relative;
             display: flex;
-            &:after{
-                position:absolute;
-                bottom:0;
-                left:0;
-                right:0;
-                height:2px;
-                content:'';
-                background:rgba(255,255,255,0.7);
-            }
+            position: relative;
+            margin-bottom:30px;
+            // &:after{
+            //     position:absolute;
+            //     bottom:0;
+            //     left:0;
+            //     right:0;
+            //     height:2px;
+            //     content:'';
+            //     background:rgba(255,255,255,0.7);
+            // }
 
             .icon-account{
                 background-image: url('../image/account.png');
@@ -75,8 +76,8 @@
         }
 
         .password-wrapper{
+            position:relative;
             display: flex;
-            position: relative;
 
             .icon-lock{
                 background-image: url('../image/lock.png');
@@ -87,6 +88,7 @@
         }
 
         .code-wrapper{
+            position: relative;
             margin:30px 0;
             display: flex;
 
@@ -112,6 +114,15 @@
 
                 &:-ms-input-placeholder{
                     color:rgba(255,255,255,0.8);
+                }
+
+                &.ng-invalid{
+                    &+span{
+                        position: absolute;
+                        left:0;
+                        bottom:-25px;
+                        color:red;
+                    }
                 }
             }
             button{

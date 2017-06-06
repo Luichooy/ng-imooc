@@ -440,7 +440,7 @@ input {
 .login .input-wrapper {
   width: 80%;
   margin: 0 auto;
-  margin-top: 70%;
+  margin-top: 40%;
 }
 .login .input-wrapper .icon {
   flex: 0 0 45px;
@@ -468,23 +468,15 @@ input {
 }
 .login .input-wrapper input.ng-invalid + span {
   position: absolute;
-  right: 0;
-  top: 50%;
+  left: 0;
+  bottom: -30px;
   transform: translateY(-50%);
   color: red;
 }
 .login .input-wrapper .account-wrapper {
   position: relative;
   display: flex;
-}
-.login .input-wrapper .account-wrapper:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  content: '';
-  background: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
 }
 .login .input-wrapper .account-wrapper .icon-account {
   background-image: url('../image/account.png');
@@ -534,9 +526,10 @@ input {
   background-size: 100% 100%;
 }
 .register .input-wrapper {
+  position: relative;
   width: 80%;
   margin: 0 auto;
-  margin-top: 50%;
+  margin-top: 40%;
 }
 .register .input-wrapper .icon {
   flex: 0 0 45px;
@@ -570,23 +563,14 @@ input {
 .register .input-wrapper .account-wrapper input.ng-invalid + span,
 .register .input-wrapper .password-wrapper input.ng-invalid + span {
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 0;
+  bottom: -25px;
   color: red;
 }
 .register .input-wrapper .account-wrapper {
-  position: relative;
   display: flex;
-}
-.register .input-wrapper .account-wrapper:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  content: '';
-  background: rgba(255, 255, 255, 0.7);
+  position: relative;
+  margin-bottom: 30px;
 }
 .register .input-wrapper .account-wrapper .icon-account {
   background-image: url('../image/account.png');
@@ -595,8 +579,8 @@ input {
   background-size: 40%;
 }
 .register .input-wrapper .password-wrapper {
-  display: flex;
   position: relative;
+  display: flex;
 }
 .register .input-wrapper .password-wrapper .icon-lock {
   background-image: url('../image/lock.png');
@@ -605,6 +589,7 @@ input {
   background-size: 40%;
 }
 .register .input-wrapper .code-wrapper {
+  position: relative;
   margin: 30px 0;
   display: flex;
 }
@@ -627,6 +612,12 @@ input {
 }
 .register .input-wrapper .code-wrapper input:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.8);
+}
+.register .input-wrapper .code-wrapper input.ng-invalid + span {
+  position: absolute;
+  left: 0;
+  bottom: -25px;
+  color: red;
 }
 .register .input-wrapper .code-wrapper button {
   flex: 1;
@@ -701,5 +692,14 @@ input {
   padding: 11px 0;
   border-radius: 2px;
   background: red;
+  color: #fff;
+}
+.content-wrapper .login-wrapper {
+  width: 100%;
+}
+.content-wrapper .login-wrapper .login-btn {
+  width: 100%;
+  padding: 11px 0;
+  background: #12d5b5;
   color: #fff;
 }

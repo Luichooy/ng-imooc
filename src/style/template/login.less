@@ -11,7 +11,7 @@
     .input-wrapper{
         width:80%;
         margin:0 auto;
-        margin-top:70%;
+        margin-top:40%;
 
         .icon{
             flex:0 0 45px;
@@ -45,8 +45,8 @@
             &.ng-invalid{
                 &+span{
                     position:absolute;
-                    right:0;
-                    top:50%;
+                    left:0;
+                    bottom:-30px;
                     transform: translateY(-50%);
                     color:red;
                 }
@@ -56,15 +56,16 @@
         .account-wrapper{
             position: relative;
             display: flex;
-            &:after{
-                position:absolute;
-                bottom:0;
-                left:0;
-                right:0;
-                height:2px;
-                content:'';
-                background:rgba(255,255,255,0.7);
-            }
+            margin-bottom:30px;
+            // &:after{
+            //     position:absolute;
+            //     bottom:0;
+            //     left:0;
+            //     right:0;
+            //     height:2px;
+            //     content:'';
+            //     background:rgba(255,255,255,0.7);
+            // }
 
             .icon-account{
                 background-image: url('../image/account.png');

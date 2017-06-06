@@ -4,6 +4,9 @@ app.config(['$validationProvider',function($validationProvider){
         password:function(value){
             var str = value + '';
             return str.length > 5;
+        },
+        required: function(value){
+            return !!value;
         }
     };
 
@@ -14,7 +17,11 @@ app.config(['$validationProvider',function($validationProvider){
         },
         password:{
             success:'',
-            error:'长度至少6位'
+            error:'密码长度至少6位'
+        },
+        required: {
+            success: '',
+            error: '不能为空'
         }
     };
 

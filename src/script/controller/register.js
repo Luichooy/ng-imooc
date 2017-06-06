@@ -1,12 +1,14 @@
-app.controller('registerCtrl',['$scope','$http','$interval',function($scope,$http,$interval){
+app.controller('registerCtrl',['$scope','$http','$state','$interval',function($scope,$http,$state,$interval){
     $scope.submit = function(){
-        console.log($scope.user);
+        $http.post('data/regist.json',$scope.user).success(function(res){
+            $state.go('login');
+        });
     };
 
     $scope.sendCode = function(){
         $http.get('data/code.json').then(function(res){
             var data = res.data;
-            
+
             if(data.state === 1){
                 var count = 60;
                 $scope.time = '60s';

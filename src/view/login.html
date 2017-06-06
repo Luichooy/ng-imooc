@@ -3,11 +3,11 @@
         <div class="input-wrapper">
             <div class="account-wrapper">
                 <i class="icon icon-account"></i>
-                <input ng-model="user.username" validator="mobile" type="text" placeholder="输入手机号">
+                <input name="mobile" ng-model="user.mobile" validator="mobile,required" type="text" placeholder="输入手机号" autocomplete="off">
             </div>
             <div class="password-wrapper">
                 <i class="icon icon-lock"></i>
-                <input ng-model="user.password" validator="password" type="password" placeholder="输入密码">
+                <input name="password" ng-model="user.password" validator="password,required" type="password" placeholder="输入密码" autocomplete="off">
             </div>
         </div>
         <div class="btn-wrapper">
