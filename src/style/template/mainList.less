@@ -4,6 +4,7 @@
     ul{
 
         li{
+            position: relative;
             padding:11px 15px;
             border-bottom:1px solid @bodyBgColor;
             font-size:0;
@@ -20,6 +21,26 @@
                 display: inline-block;
                 vertical-align: top;
                 font-size:14px;
+
+                .icon{
+                    position:absolute;
+                    right:15px;
+                    top:50%;
+                    transform: translateY(-50%);
+                    width:35px;
+                    height:35px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 35px;
+
+                    &.star-active{
+                        background-image:url(../image/star-active.png);
+                    }
+
+                    &.star{
+                        background-image:url(../image/star.png);
+                    }
+                }
             }
         }
     }

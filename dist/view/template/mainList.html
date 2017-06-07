@@ -9,7 +9,7 @@
                 <p class="detail">{{item.companyName}}【{{item.cityName}}】 {{item.industryName}}</p>
                 <p>{{item.salaryName}} {{item.scaleName}}</p>
                 <p class="time">{{item.date}}</p>
-                <span class="icon star"></span>
+                <span ng-if="isFavorite" ng-click="select(item,$event)" class="icon {{item.select?'star-active':'star'}}"></span>
             </div>
         </li>
     </ul>
